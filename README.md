@@ -1,14 +1,3 @@
-# Local Development API Server
-## Usage
-#### Get Restaurants
-```
-curl "http://localhost:1337/restaurants"
-```
-#### Get Restaurants by id
-````
-curl "http://localhost:1337/restaurants/{3}"
-````
-
 ## Architecture
 Local server
 - Node.js
@@ -48,98 +37,10 @@ debug: Environment : development
 debug: Port        : 1337
 
 
-## Endpoints
+### What do I do from here
 
-### GET Endpoints
+1. From the `app/` folder, start up a simple HTTP server to serve up the site files on your local computer. Python has some simple tools to do this, and you don't even need to know Python. For most people, it's already installed on your computer.
 
-#### Get all restaurants
-```
-http://localhost:1337/restaurants/
-```
+    In a terminal, check the version of Python you have: `python -V`. If you have Python 2.x, spin up the server with `python -m SimpleHTTPServer 8000` (or some other port, if port 8000 is already in use.) For Python 3.x, you can use `python3 -m http.server 8000`. If you don't have Python installed, navigate to Python's [website](https://www.python.org/) to download and install the software.
 
-#### Get favorite restaurants
-```
-http://localhost:1337/restaurants/?is_favorite=true
-```
-
-#### Get a restaurant by id
-```
-http://localhost:1337/restaurants/<restaurant_id>
-```
-
-#### Get all reviews for a restaurant
-```
-http://localhost:1337/reviews/?restaurant_id=<restaurant_id>
-```
-
-#### Get all restaurant reviews
-```
-http://localhost:1337/reviews/
-```
-
-#### Get a restaurant review by id
-```
-http://localhost:1337/reviews/<review_id>
-```
-
-#### Get all reviews for a restaurant
-```
-http://localhost:1337/reviews/?restaurant_id=<restaurant_id>
-```
-
-
-### POST Endpoints
-
-#### Create a new restaurant review
-```
-http://localhost:1337/reviews/
-```
-
-###### Parameters
-```
-{
-    "restaurant_id": <restaurant_id>,
-    "name": <reviewer_name>,
-    "rating": <rating>,
-    "comments": <comment_text>
-}
-```
-
-
-### PUT Endpoints
-
-#### Favorite a restaurant
-```
-http://localhost:1337/restaurants/<restaurant_id>/?is_favorite=true
-```
-
-#### Unfavorite a restaurant
-```
-http://localhost:1337/restaurants/<restaurant_id>/?is_favorite=false
-```
-
-#### Update a restaurant review
-```
-http://localhost:1337/reviews/<review_id>
-```
-
-###### Parameters
-```
-{
-    "name": <reviewer_name>,
-    "rating": <rating>,
-    "comments": <comment_text>
-}
-```
-
-
-### DELETE Endpoints
-
-#### Delete a restaurant review
-```
-http://localhost:1337/reviews/<review_id>
-```
-
-
-If you find a bug in the source code or a mistake in the documentation, you can help us by
-submitting an issue to our [Waffle Dashboard](https://waffle.io/udacity/mwnd-issues). Even better you can submit a Pull Request with a fix :)
+2. With your server running, visit the site: `http://localhost:8000`, and look around for a bit to see what the current experience looks like.
