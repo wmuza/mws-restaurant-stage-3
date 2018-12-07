@@ -298,7 +298,7 @@ class DBHelper {
 			DBHelper.createIDBReview(data)
 			  .then(review_key => {
 				// Get review_key and save it with review to offline queue
-				console.log('returned review_key', review_key);
+				//console.log('returned review_key', review_key);
 				DBHelper.addRequestToQueue(url, headers, method, data, review_key)
 				  .then(offline_key => console.log('returned offline_key', offline_key));
 			  });
@@ -328,8 +328,8 @@ class DBHelper {
 			DBHelper.updateIDBRestaurant(restaurant)
 			  .then(() => {
 				// add to queue...
-				console.log('Add favorite request to queue');
-				console.log(`DBHelper.addRequestToQueue(${url}, {}, ${method}, '')`);
+				//console.log('Add favorite request to queue');
+				//console.log(`DBHelper.addRequestToQueue(${url}, {}, ${method}, '')`);
 				DBHelper.addRequestToQueue(url, {}, method, '')
 				  .then(offline_key => console.log('returned offline_key', offline_key));
 			  });
@@ -347,7 +347,7 @@ class DBHelper {
 	  static createIDBReview(review) {
 		return DBHelper.idbKeyVal.setReturnId('reviews', review)
 		  .then(id => {
-			console.log('Saved to IDB: reviews', review);
+			//console.log('Saved to IDB: reviews', review);
 			return id;
 		  });
 	  }
@@ -365,7 +365,7 @@ class DBHelper {
 		};
 		return DBHelper.idbKeyVal.setReturnId('offline', request)
 		  .then(id => {
-			console.log('Saved to IDB: offline', request);
+			//console.log('Saved to IDB: offline', request);
 			return id;
 		  });
 	  }
@@ -384,10 +384,10 @@ class DBHelper {
 		})
 		  .then(function nextRequest (cursor) {
 			if (!cursor) {
-			  console.log('cursor done.');
+			  //console.log('cursor done.');
 			  return;
 			}
-			console.log('cursor', cursor.value.data.name, cursor.value.data);
+			//console.log('cursor', cursor.value.data.name, cursor.value.data);
 
 			const offline_key = cursor.key;
 			const url = cursor.value.url;
@@ -406,7 +406,7 @@ class DBHelper {
 			  .then(response => response.json())
 			  .then(data => {
 				// data is the returned record
-				console.log('Received updated record from DB Server', data);
+				//console.log('Received updated record from DB Server', data);
 
 				// 1. Delete http request record from offline store
 				DBHelper.dbPromise.then(db => {
@@ -417,7 +417,7 @@ class DBHelper {
 				  .then(() => {
 					// test if this is a review or favorite update
 					if (review_key === undefined) {
-					  console.log('Favorite posted to server.');
+					  //console.log('Favorite posted to server.');
 					} else {
 					  // 2. Add new review record to reviews store
 					  // 3. Delete old review record from reviews store 
@@ -426,12 +426,12 @@ class DBHelper {
 						return tx.objectStore('reviews').put(data)
 						  .then(() => tx.objectStore('reviews').delete(review_key))
 						  .then(() => {
-							console.log('tx complete reached.');
+							//console.log('tx complete reached.');
 							return tx.complete;
 						  })
 						  .catch(err => {
 							tx.abort();
-							console.log('transaction error: tx aborted', err);
+							//console.log('transaction error: tx aborted', err);
 						  });
 					  })
 						.then(() => console.log('review transaction success!'))

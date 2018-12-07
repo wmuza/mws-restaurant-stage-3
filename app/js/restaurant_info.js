@@ -326,7 +326,7 @@ const saveAddReview = (e) => {
   const form = e.target;
  
   if (form.checkValidity()) {
-    console.log('is valid');
+    //console.log('is valid');
 
     const restaurant_id = self.restaurant.id;
     const name = document.querySelector('#reviewName').value;
@@ -335,14 +335,14 @@ const saveAddReview = (e) => {
   
     // attempt save to database server
     DBHelper.createRestaurantReview(restaurant_id, name, rating, comments, (error, review) => {
-      console.log('got callback');
+      //console.log('got callback');
       form.reset();
       if (error) {
-        console.log('We are offline. Review has been saved to the queue.');
+        //console.log('We are offline. Review has been saved to the queue.');
         // window.location.href = `/restaurant.html?id=${self.restaurant.id}&isOffline=true`;
         showOffline();
       } else {
-        console.log('Received updated record from DB Server', review);
+        //console.log('Received updated record from DB Server', review);
         DBHelper.createIDBReview(review); // write record to local IDB store
         // window.location.href = `/restaurant.html?id=${self.restaurant.id}`;
       }
@@ -455,12 +455,12 @@ const favoriteClickHandler = (evt, fav, restaurant) => {
   const is_favorite = JSON.parse(restaurant.is_favorite); // set to boolean
 
   DBHelper.toggleFavorite(restaurant, (error, restaurant) => {
-    console.log('got callback');
+    //console.log('got callback');
     if (error) {
-      console.log('We are offline. Review has been saved to the queue.');
+      //console.log('We are offline. Review has been saved to the queue.');
       showOffline();
     } else {
-      console.log('Received updated record from DB Server', restaurant);
+      //console.log('Received updated record from DB Server', restaurant);
       DBHelper.updateIDBRestaurant(restaurant); // write record to local IDB store
     }
   });
