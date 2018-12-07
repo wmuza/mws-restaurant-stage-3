@@ -56,7 +56,53 @@
 	  <div id="reviews-header"></div>
       <ul id="reviews-list" role="region" aria-label="reviews list"></ul>
     </section>
+	
+	<!-- Beginning modal -->
+	  <div id="modal" role="dialog" aria-modal="true" aria-labelledby="add-review-header">
+		<button class="close-btn" aria-label="close" title="Close">x</button>
+		<div id="review_form_container">
+		  <h2 id="add-review-header">Add Review</h2>
+		  <form id="review_form">
+			<div class="fieldset">
+			  <label for="reviewName">Name</label>
+			  <input type="text" name="reviewName" id="reviewName" required>
+			</div>
+			<div class="fieldset">
+			  <label>Rating</label>
+			  <div class="rate">
+				<input type="radio" id="star5" name="rate" value="5" onkeydown="navRadioGroup(event)" onfocus="setFocus(event)" required />
+				<label for="star5" title="5 stars">5 stars</label>
+				<input type="radio" id="star4" name="rate" value="4" onkeydown="navRadioGroup(event)" />
+				<label for="star4" title="4 stars">4 stars</label>
+				<input type="radio" id="star3" name="rate" value="3" onkeydown="navRadioGroup(event)" />
+				<label for="star3" title="3 stars">3 stars</label>
+				<input type="radio" id="star2" name="rate" value="2" onkeydown="navRadioGroup(event)" />
+				<label for="star2" title="2 stars">2 stars</label>
+				<input type="radio" id="star1" name="rate" value="1" onkeydown="navRadioGroup(event)" onfocus="setFocus(event)" />
+				<label for="star1" title="1 star">1 star</label>
+			  </div>
+			</div>
+			<div class="fieldset">
+			  <label for="reviewComments">Comments</label>
+			  <textarea name="reviewComments" id="reviewComments" cols="20" rows="5" required></textarea>
+			</div>
+			<div class="fieldset right">
+			  <button id="submit_review_btn">Save</button>
+			</div>
+		  </form>
+		</div>
+	  </div>
+	  <div class="modal-overlay"></div>
+	 <!-- End modal -->	
     <!-- End reviews -->
+	
+	<!-- Beginning offline -->
+	<div id="offline" role="alert" aria-hidden="true" aria-live="assertive">
+		<h3>Offline - not connected to the internet</h3>
+		<p>Your update has been saved and will post to the server once the connection is reestablished.</p>
+	</div>
+	<!-- End offline -->
+	
   </main>
   <!-- End main -->
 
@@ -65,14 +111,13 @@
   <!-- Leaflet script -->
   <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
   <!-- Database helpers -->
-  <script src="js/dbhelper.js"></script>
-  <!-- Main javascript file -->
-  <script src="js/restaurant_info.js"></script>
+  <script src="js/idb.js"></script>
+  <script src="js/dbhelper.js"></script>  
   <!-- Register a service worker on the site -->
   <script src="js/register_sw.js"></script>
-  <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initMap"></script> -->
-
-
+  <!-- Main javascript file -->
+  <script src="js/restaurant_info.js"></script>
+  
   <footer id="footer" role="contentinfo" aria-label="Footer Information">
     Copyright (c) 2018 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>

@@ -1,8 +1,8 @@
-{
-  "name": "Restaurant Reviews for MWS",
-  "short_name": "MWS Stage 2",
+ {
+  "name": "Udacity Restaurant Reviews",
+  "short_name": "Restaurants",
   "theme_color": "#252831",
-  "background_color": "#2196f3",
+  "background_color": "#262932",
   "display": "standalone",
   "Scope": "/",
   "start_url": "/index.html",

@@ -45,8 +45,8 @@
           "Sunday": "12:00 pm - 3:00 pm, 5:00 pm - 11:00 pm"
         },
         "createdAt": 1504095568414,
-        "updatedAt": "2018-12-06T09:05:22.946Z",
-        "is_favorite": "false",
+        "updatedAt": "2018-12-07T08:00:35.444Z",
+        "is_favorite": "true",
         "id": 2
       },
       {
@@ -69,9 +69,9 @@
           "Sunday": "11:30 am - 2:00 am"
         },
         "createdAt": 1504095571434,
-        "updatedAt": "2018-12-06T09:05:21.441Z",
+        "updatedAt": "2018-12-07T05:45:14.791Z",
         "id": 3,
-        "is_favorite": "false"
+        "is_favorite": "true"
       },
       {
         "name": "Katz's Delicatessen",
@@ -93,8 +93,8 @@
           "Sunday": "Sat - 10:30 pm"
         },
         "createdAt": 1504095567091,
-        "updatedAt": "2018-12-06T09:05:17.623Z",
-        "is_favorite": "false",
+        "updatedAt": "2018-12-07T06:56:05.341Z",
+        "is_favorite": "true",
         "id": 4
       },
       {
@@ -117,8 +117,8 @@
           "Sunday": "10:00 am - 12:00 am"
         },
         "createdAt": 1504095567071,
-        "updatedAt": "2018-12-06T09:05:16.168Z",
-        "is_favorite": "false",
+        "updatedAt": "2018-12-07T05:49:18.218Z",
+        "is_favorite": "true",
         "id": 5
       },
       {
@@ -141,8 +141,8 @@
           "Sunday": "12:00 pm - 9:00 pm"
         },
         "createdAt": 1504095567071,
-        "updatedAt": "2018-12-06T09:05:14.136Z",
-        "is_favorite": "false",
+        "updatedAt": "2018-12-07T08:01:25.635Z",
+        "is_favorite": "true",
         "id": 6
       },
       {
@@ -213,8 +213,8 @@
           "Sunday": "5:00 pm - 10:00 pm"
         },
         "createdAt": 1504095567191,
-        "updatedAt": "2018-12-06T09:04:17.400Z",
-        "is_favorite": "false",
+        "updatedAt": "2018-12-07T10:12:59.005Z",
+        "is_favorite": "true",
         "id": 9
       },
       {
@@ -236,8 +236,8 @@
           "Sunday": "11:00 am - 12:00 am"
         },
         "createdAt": 1504095567183,
-        "updatedAt": "2018-12-06T09:04:19.533Z",
-        "is_favorite": "false",
+        "updatedAt": "2018-12-07T09:55:03.994Z",
+        "is_favorite": "true",
         "id": 10
       }
     ],
@@ -511,6 +511,78 @@
         "updatedAt": 1504095567183,
         "rating": 4,
         "comments": "For a Michelin star restaurant, it's fairly priced and the food is fairly good. Started with a strawberry margarita which was good in flavor but not much alcohol. Had the chicken enchiladas with salsa verde and it was really good. Great balance in flavor and a good portion. Extra tasty with their hot sauces. My wife had the lamb but it was a bit too salty for our taste. Although, it was cooked very well and fell off the bone. The highlight of the night was the tres leches cake. Probably the best I've ever had to be honest. Not too sweet and very milky. Overall, one of my top 3 favorite Mexican in NY."
+      },
+      {
+        "restaurant_id": 1,
+        "name": "Will",
+        "rating": 4,
+        "comments": "test review",
+        "createdAt": "2018-12-07T05:21:33.500Z",
+        "updatedAt": "2018-12-07T05:21:33.500Z",
+        "id": 31
+      },
+      {
+        "restaurant_id": 2,
+        "name": "rejoice",
+        "rating": 5,
+        "comments": "rejoice kemekme\nrmrv v rvr vfvifvi",
+        "createdAt": "2018-12-07T07:46:47.025Z",
+        "updatedAt": "2018-12-07T07:46:47.025Z",
+        "id": 32
+      },
+      {
+        "restaurant_id": 2,
+        "name": "Rejoice",
+        "rating": 4,
+        "comments": "jbjrv vkf vfjv fvfo fvvkjsdv v fiofifff pwfwiqownfww wiofwfnwf fw",
+        "createdAt": "2018-12-07T07:49:25.560Z",
+        "updatedAt": "2018-12-07T07:49:25.560Z",
+        "id": 33
+      },
+      {
+        "restaurant_id": 2,
+        "name": "heer",
+        "rating": 3,
+        "comments": "erfop3of3f r3foo3rmf; f34of3l f4rpo[frlmfr frfm [r f[rfm",
+        "createdAt": "2018-12-07T07:57:14.750Z",
+        "updatedAt": "2018-12-07T07:57:14.750Z",
+        "id": 34
+      },
+      {
+        "restaurant_id": 2,
+        "name": "heer",
+        "rating": 3,
+        "comments": "erfop3of3f r3foo3rmf; f34of3l f4rpo[frlmfr frfm [r f[rfm",
+        "createdAt": "2018-12-07T07:57:24.771Z",
+        "updatedAt": "2018-12-07T07:57:24.771Z",
+        "id": 35
+      },
+      {
+        "restaurant_id": 1,
+        "name": "offline review",
+        "rating": 5,
+        "comments": "weirpf3f34 r3pof3mf 43fopf 4fo",
+        "createdAt": "2018-12-07T08:04:05.753Z",
+        "updatedAt": "2018-12-07T08:04:05.753Z",
+        "id": 36
+      },
+      {
+        "restaurant_id": 9,
+        "name": "Rumen Will",
+        "rating": 5,
+        "comments": "herer",
+        "createdAt": "2018-12-07T10:13:10.760Z",
+        "updatedAt": "2018-12-07T10:13:10.760Z",
+        "id": 37
+      },
+      {
+        "restaurant_id": 9,
+        "name": "Rumen Will",
+        "rating": 5,
+        "comments": "herer",
+        "createdAt": "2018-12-07T10:13:24.589Z",
+        "updatedAt": "2018-12-07T10:13:24.589Z",
+        "id": 38
       }
     ]
   },
@@ -566,7 +638,7 @@
       "id": 10
     },
     "reviews": {
-      "id": 30
+      "id": 38
     }
   }
 }
