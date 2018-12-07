@@ -232,10 +232,10 @@ class DBHelper {
    * Images Srcset.
    */
 	static srcset_large_jpg(restaurant) {
-		return (`img/${restaurant.id}-1600_large_2x.jpg 2x, img/${restaurant.id}-800_large_1x.jpg 1x`);
+		return (`img/${restaurant.id}-800_large_1x.jpg 2x, img/${restaurant.id}-800_large_1x.jpg 1x`);
 	}
 	static srcset_medium_jpg(restaurant) {
-		return (`img/${restaurant.id}-1280_medium_2x.jpg 2x, img/${restaurant.id}-640_medium_1x.jpg 1x`);
+		return (`img/${restaurant.id}-640_medium_1x.jpg 2x, img/${restaurant.id}-640_medium_1x.jpg 1x`);
 	}
 	static srcset_small_jpg(restaurant) {
 		return (`img/${restaurant.id}-640_small_2x.jpg 2x, img/${restaurant.id}-320_small_1x.jpg 1x`);

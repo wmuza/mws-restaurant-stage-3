@@ -237,6 +237,18 @@ const addMarkersToMap = (restaurants = self.restaurants) => {
   });
 }; 
 
+const showOffline = () => {
+  document.querySelector('#offline').setAttribute('aria-hidden', false);
+  document.querySelector('#offline').setAttribute('aria-live', 'assertive');
+  document.querySelector('#offline').classList.add('show');
+    
+  wait(8000).then(() => {
+    document.querySelector('#offline').setAttribute('aria-hidden', true);
+    document.querySelector('#offline').setAttribute('aria-live', 'off');
+    document.querySelector('#offline').classList.remove('show');
+  });
+};
+
 const favoriteClickHandler = (evt, fav, restaurant) => {
   evt.preventDefault();
   const is_favorite = JSON.parse(restaurant.is_favorite); // set to boolean

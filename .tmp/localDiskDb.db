@@ -21,9 +21,9 @@
           "Sunday": "12:00 pm - 4:00 pm, 5:30 pm - 11:00 pm"
         },
         "createdAt": 1504095563444,
-        "updatedAt": "2018-12-06T09:04:35.067Z",
+        "updatedAt": "2018-12-07T20:38:03.396Z",
         "id": 1,
-        "is_favorite": "true"
+        "is_favorite": "false"
       },
       {
         "name": "Emily",
@@ -45,8 +45,8 @@
           "Sunday": "12:00 pm - 3:00 pm, 5:00 pm - 11:00 pm"
         },
         "createdAt": 1504095568414,
-        "updatedAt": "2018-12-07T08:00:35.444Z",
-        "is_favorite": "true",
+        "updatedAt": "2018-12-07T20:29:17.701Z",
+        "is_favorite": "false",
         "id": 2
       },
       {
@@ -69,9 +69,9 @@
           "Sunday": "11:30 am - 2:00 am"
         },
         "createdAt": 1504095571434,
-        "updatedAt": "2018-12-07T05:45:14.791Z",
+        "updatedAt": "2018-12-07T20:29:32.206Z",
         "id": 3,
-        "is_favorite": "true"
+        "is_favorite": "false"
       },
       {
         "name": "Katz's Delicatessen",
@@ -93,8 +93,8 @@
           "Sunday": "Sat - 10:30 pm"
         },
         "createdAt": 1504095567091,
-        "updatedAt": "2018-12-07T06:56:05.341Z",
-        "is_favorite": "true",
+        "updatedAt": "2018-12-07T20:30:30.190Z",
+        "is_favorite": "false",
         "id": 4
       },
       {
@@ -213,8 +213,8 @@
           "Sunday": "5:00 pm - 10:00 pm"
         },
         "createdAt": 1504095567191,
-        "updatedAt": "2018-12-07T10:12:59.005Z",
-        "is_favorite": "true",
+        "updatedAt": "2018-12-07T11:29:58.707Z",
+        "is_favorite": "false",
         "id": 9
       },
       {
@@ -236,8 +236,8 @@
           "Sunday": "11:00 am - 12:00 am"
         },
         "createdAt": 1504095567183,
-        "updatedAt": "2018-12-07T09:55:03.994Z",
-        "is_favorite": "true",
+        "updatedAt": "2018-12-07T11:30:00.962Z",
+        "is_favorite": "false",
         "id": 10
       }
     ],
