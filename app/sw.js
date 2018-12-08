@@ -224,40 +224,5 @@ self.addEventListener('activate', event => {
   );
 });
 
-const wait = function (ms) {
-  return new Promise(function (resolve, reject) {
-    window.setTimeout(function () {
-      resolve(ms);
-      reject(ms);
-    }, ms);
-  });
-};
-self.wait = wait;
 
-
-const favoriteClickHandler = (evt, fav, restaurant) => {
-  evt.preventDefault();
-  const is_favorite = JSON.parse(restaurant.is_favorite); // set to boolean
-
-  DBHelper.toggleFavorite(restaurant, (error, restaurant) => {
-    if (error) {
-      showOffline();
-    } else {
-      DBHelper.updateIDBRestaurant(restaurant); 
-    }
-  });
-
-  // set ARIA, text, & labels
-  if (is_favorite) {
-    fav.setAttribute('aria-pressed', 'false');
-    fav.innerHTML = `Add ${restaurant.name} as a favorite`;
-    fav.title = `Add ${restaurant.name} as a favorite`;
-  } else {
-    fav.setAttribute('aria-pressed', 'true');
-    fav.innerHTML = `Remove ${restaurant.name} as a favorite`;
-    fav.title = `Remove ${restaurant.name} as a favorite`;
-  }
-  fav.classList.toggle('active');
-};
-self.favoriteClickHandler = favoriteClickHandler;
 
