@@ -283,7 +283,6 @@ class DBHelper {
 		  comments: comments
 		};
 		const body = JSON.stringify(data);
-		// const body = data;
 		
 		fetch(url, {
 		  headers: headers,
@@ -293,12 +292,8 @@ class DBHelper {
 		  .then(response => response.json())
 		  .then(data => callback(null, data))
 		  .catch(err => {
-			// We are offline...
-			// Save review to local IDB
 			DBHelper.createIDBReview(data)
 			  .then(review_key => {
-				// Get review_key and save it with review to offline queue
-				//console.log('returned review_key', review_key);
 				DBHelper.addRequestToQueue(url, headers, method, data, review_key)
 				  .then(offline_key => console.log('returned offline_key', offline_key));
 			  });
@@ -323,13 +318,8 @@ class DBHelper {
 		  .then(response => response.json())
 		  .then(data => callback(null, data))
 		  .catch(err => {
-			// We are offline
-			// Update restaurant record in local IDB
 			DBHelper.updateIDBRestaurant(restaurant)
 			  .then(() => {
-				// add to queue...
-				//console.log('Add favorite request to queue');
-				//console.log(`DBHelper.addRequestToQueue(${url}, {}, ${method}, '')`);
 				DBHelper.addRequestToQueue(url, {}, method, '')
 				  .then(offline_key => console.log('returned offline_key', offline_key));
 			  });
@@ -365,7 +355,6 @@ class DBHelper {
 		};
 		return DBHelper.idbKeyVal.setReturnId('offline', request)
 		  .then(id => {
-			//console.log('Saved to IDB: offline', request);
 			return id;
 		  });
 	  }
@@ -374,8 +363,7 @@ class DBHelper {
   /**
    * Process Queue
    */	
-	static processQueue() {
-	  // Open offline queue & return cursor	  
+	static processQueue() {  
 		DBHelper.dbPromise.then(db => {
 		  if (!db) return;
 		  const tx = db.transaction(['offline'], 'readwrite');
@@ -384,11 +372,8 @@ class DBHelper {
 		})
 		  .then(function nextRequest (cursor) {
 			if (!cursor) {
-			  //console.log('cursor done.');
 			  return;
 			}
-			//console.log('cursor', cursor.value.data.name, cursor.value.data);
-
 			const offline_key = cursor.key;
 			const url = cursor.value.url;
 			const headers = cursor.value.headers;
@@ -404,10 +389,7 @@ class DBHelper {
 			  body: body
 			})
 			  .then(response => response.json())
-			  .then(data => {
-				// data is the returned record
-				//console.log('Received updated record from DB Server', data);
-
+			  .then(data => {				
 				// 1. Delete http request record from offline store
 				DBHelper.dbPromise.then(db => {
 				  const tx = db.transaction(['offline'], 'readwrite');
@@ -417,7 +399,6 @@ class DBHelper {
 				  .then(() => {
 					// test if this is a review or favorite update
 					if (review_key === undefined) {
-					  //console.log('Favorite posted to server.');
 					} else {
 					  // 2. Add new review record to reviews store
 					  // 3. Delete old review record from reviews store 
@@ -426,12 +407,10 @@ class DBHelper {
 						return tx.objectStore('reviews').put(data)
 						  .then(() => tx.objectStore('reviews').delete(review_key))
 						  .then(() => {
-							//console.log('tx complete reached.');
 							return tx.complete;
 						  })
 						  .catch(err => {
 							tx.abort();
-							//console.log('transaction error: tx aborted', err);
 						  });
 					  })
 						.then(() => console.log('review transaction success!'))
@@ -456,8 +435,7 @@ class DBHelper {
   /**
    * Map marker for a restaurant.
    */
-   static mapMarkerForRestaurant(restaurant, map) {
-    // https://leafletjs.com/reference-1.3.0.html#marker  
+   static mapMarkerForRestaurant(restaurant, map) { 
     const marker = new L.marker([restaurant.latlng.lat, restaurant.latlng.lng],
       {title: restaurant.name,
       alt: restaurant.name,

@@ -251,15 +251,12 @@ const showOffline = () => {
 
 const favoriteClickHandler = (evt, fav, restaurant) => {
   evt.preventDefault();
-  const is_favorite = JSON.parse(restaurant.is_favorite); // set to boolean
+  const is_favorite = JSON.parse(restaurant.is_favorite);
 
   DBHelper.toggleFavorite(restaurant, (error, restaurant) => {
-    //console.log('got callback');
     if (error) {
-      //console.log('We are offline. Review has been saved to the queue.');
       showOffline();
     } else {
-      //console.log('Received updated record from DB Server', restaurant);
       DBHelper.updateIDBRestaurant(restaurant); // write record to local IDB store
     }
   });

@@ -80,7 +80,6 @@ const idbKeyVal = {
 self.idbKeyVal = idbKeyVal;
 
 // list of assets to cache on install
-// cache each restaurant detail page as well
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(staticCacheName)
@@ -114,7 +113,7 @@ self.addEventListener('install', event => {
   );
 });
 
-let i = 0;
+
 // intercept all requests
 self.addEventListener('fetch', event => {
   const request = event.request;
@@ -126,8 +125,6 @@ self.addEventListener('fetch', event => {
       console.log('filtering out non-GET method');
       return;
     }
-
-    console.log('fetch intercept', ++i, requestUrl.href);
     
     if (request.url.includes('reviews')) {
       let id = +requestUrl.searchParams.get('restaurant_id');
@@ -141,12 +138,8 @@ self.addEventListener('fetch', event => {
   }
 });
 
-let j = 0;
-function idbRestaurantResponse(request, id) {
-  // 1. getAll records from objectStore
-  // 2. if more than 1 rec then return match
-  // 3. if no match then fetch json, write to idb, & return response
 
+function idbRestaurantResponse(request, id) {
   return idbKeyVal.getAll('restaurants')
     .then(restaurants => {
       if (restaurants.length) {
@@ -156,7 +149,6 @@ function idbRestaurantResponse(request, id) {
         .then(response => response.json())
         .then(json => {
           json.forEach(restaurant => {
-            console.log('fetch idb write', ++j, restaurant.id, restaurant.name);
             idbKeyVal.set('restaurants', restaurant);
           });
           return json;
@@ -172,7 +164,7 @@ function idbRestaurantResponse(request, id) {
 }
 
 
-let k = 0;
+
 function idbReviewResponse(request, id) {
   return idbKeyVal.getAllIdx('reviews', 'restaurant_id', id)
     .then(reviews => {
@@ -183,7 +175,6 @@ function idbReviewResponse(request, id) {
         .then(response => response.json())
         .then(json => {
           json.forEach(review => {
-            console.log('fetch idb review write', ++k, review.id, review.name);
             idbKeyVal.set('reviews', review);
           });
           return json;
@@ -200,7 +191,6 @@ function idbReviewResponse(request, id) {
 
 
 function cacheResponse(request) {
-  // Check matched response but if no match then fetch, open cache, cache.put response.clone, return response
   return caches.match(request)
   .then(response => {
     return response || fetch(request).then(fetchResponse => {
@@ -212,7 +202,6 @@ function cacheResponse(request) {
     if (request.url.includes('.jpg')) {
       return caches.match('/img/offline.png');
     }
-    // On error return: You are Not connected to the internet
     return new Response(error, {
       status: 404,
       statusText: 'You are Not connected to the internet  check cacheResponse'
@@ -221,7 +210,6 @@ function cacheResponse(request) {
 }
 
 
-// delete old/unused static caches
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -236,9 +224,6 @@ self.addEventListener('activate', event => {
   );
 });
 
-
-// Shared code goes here since this file get included on all pages...
-// Shared methods below...
 const wait = function (ms) {
   return new Promise(function (resolve, reject) {
     window.setTimeout(function () {
@@ -249,31 +234,16 @@ const wait = function (ms) {
 };
 self.wait = wait;
 
-const showOffline = () => {
-  document.querySelector('#offline').setAttribute('aria-hidden', false);
-  document.querySelector('#offline').setAttribute('aria-live', 'assertive');
-  document.querySelector('#offline').classList.add('show');
-    
-  wait(8000).then(() => {
-    document.querySelector('#offline').setAttribute('aria-hidden', true);
-    document.querySelector('#offline').setAttribute('aria-live', 'off');
-    document.querySelector('#offline').classList.remove('show');
-  });
-};
-self.showOffline = showOffline;
 
 const favoriteClickHandler = (evt, fav, restaurant) => {
   evt.preventDefault();
   const is_favorite = JSON.parse(restaurant.is_favorite); // set to boolean
 
   DBHelper.toggleFavorite(restaurant, (error, restaurant) => {
-    console.log('got callback');
     if (error) {
-      console.log('We are offline. Review has been saved to the queue.');
       showOffline();
     } else {
-      console.log('Received updated record from DB Server', restaurant);
-      DBHelper.updateIDBRestaurant(restaurant); // write record to local IDB store
+      DBHelper.updateIDBRestaurant(restaurant); 
     }
   });
 

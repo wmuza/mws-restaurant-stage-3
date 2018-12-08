@@ -190,17 +190,14 @@ const createReviewHTML = (review) => {
 
   const createdAt = document.createElement('p');
   createdAt.classList.add('createdAt');
-  // const createdDate = new Date(review.createdAt).toLocaleDateString();
   const createdDate = review.createdAt ?
     new Date(review.createdAt).toLocaleDateString() :
     'Pending';
   createdAt.innerHTML = `Added:<strong>${createdDate}</strong>`;
   li.appendChild(createdAt);
 
-  // if (review.updatedAt > review.createdAt) {
     
   const updatedAt = document.createElement('p');
-  // const updatedDate = new Date(review.updatedAt).toLocaleDateString();
   const updatedDate = review.updatedAt ?
     new Date(review.updatedAt).toLocaleDateString() :
     'Pending';
@@ -284,17 +281,14 @@ const openModal = () => {
   modal.classList.add('show');
   modalOverlay.classList.add('show');
 
-  // Focus first child
-  // firstTabStop.focus();
+
   const reviewName = document.getElementById('reviewName');
   setTimeout(() => {
     reviewName.focus();
   }, 200);
 
   function trapTabKey(e) {
-    // Check for TAB key press
     if (e.keyCode === 9) {
-
       // SHIFT + TAB
       if (e.shiftKey) {
         if (document.activeElement === firstTabStop) {
@@ -326,7 +320,6 @@ const saveAddReview = (e) => {
   const form = e.target;
  
   if (form.checkValidity()) {
-    //console.log('is valid');
 
     const restaurant_id = self.restaurant.id;
     const name = document.querySelector('#reviewName').value;
@@ -335,16 +328,11 @@ const saveAddReview = (e) => {
   
     // attempt save to database server
     DBHelper.createRestaurantReview(restaurant_id, name, rating, comments, (error, review) => {
-      //console.log('got callback');
       form.reset();
       if (error) {
-        //console.log('We are offline. Review has been saved to the queue.');
-        // window.location.href = `/restaurant.html?id=${self.restaurant.id}&isOffline=true`;
         showOffline();
       } else {
-        //console.log('Received updated record from DB Server', review);
-        DBHelper.createIDBReview(review); // write record to local IDB store
-        // window.location.href = `/restaurant.html?id=${self.restaurant.id}`;
+        DBHelper.createIDBReview(review); 
       }
       idbKeyVal.getAllIdx('reviews', 'restaurant_id', restaurant_id)
         .then(reviews => {
@@ -361,13 +349,11 @@ const saveAddReview = (e) => {
  * Close Modal
  */
 const closeModal = () => {
-  // Hide the modal and overlay
   modal.classList.remove('show');
   modalOverlay.classList.remove('show');
 
   const form = document.getElementById('review_form');
   form.reset();
-  // Set focus back to element that had it before the modal was opened
   focusedElementBeforeModal.focus();
 };
 
@@ -378,11 +364,9 @@ const setFocus = (evt) => {
   const rateRadios = document.getElementsByName('rate');
   const rateRadiosArr = Array.from(rateRadios);
   const anyChecked = rateRadiosArr.some(radio => { return radio.checked === true; });
-  // console.log('anyChecked', anyChecked);
   if (!anyChecked) {
     const star1 = document.getElementById('star1');
     star1.focus();
-    // star1.checked = true;
   }
 };
 
@@ -455,12 +439,9 @@ const favoriteClickHandler = (evt, fav, restaurant) => {
   const is_favorite = JSON.parse(restaurant.is_favorite); // set to boolean
 
   DBHelper.toggleFavorite(restaurant, (error, restaurant) => {
-    //console.log('got callback');
     if (error) {
-      //console.log('We are offline. Review has been saved to the queue.');
       showOffline();
     } else {
-      //console.log('Received updated record from DB Server', restaurant);
       DBHelper.updateIDBRestaurant(restaurant); // write record to local IDB store
     }
   });
